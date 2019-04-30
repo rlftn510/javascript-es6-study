@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <ul>
+      <li>일</li>
+      <li>이</li>
+      <li>삼</li>
+    </ul>
+    <ol>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ol>
+  </div>
+  <script>
+    var nodes = document.querySelector('ul');
+    for (var i = 0; i < nodes.children.length; i++){
+      var el = nodes.children[i];
+      el.onclick = function(e){
+        e.target.style.backgroundColor = 'red'
+        console.log(i)
+      }
+    }
+
+    var nodes = document.querySelector('ol');
+    for (let k = 0; k < nodes.children.length; k++){
+      var el = nodes.children[k];
+      el.onclick = function(e){
+        e.target.style.backgroundColor = 'blue'
+        console.log(k)
+      }
+    }
+  </script>
+</body>
+</html>
