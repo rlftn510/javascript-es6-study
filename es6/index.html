@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>var, let, const</title>
+</head>
+<body>
+  <script>
+    // "use strict" 전역 변수 설정을 막는것.
+
+    one = 100;
+    function get() {
+      one = 300;
+      console.log('함수:' , one)
+    }
+    get()
+
+    let two = '출구';
+    // two = '뭘까?'
+    if (two){
+      let two = '입구';
+      console.log(two)
+    }
+    console.log(two)
+    
+    var music = '음악';
+    console.log(this.music); 
+    // var 변수 선언은 window 오브젝트를 참고 하지만 let은 window 오브젝트에 설정되어 있지 않다
+    let sports = '운동'; 
+    console.log(this.sports)
+    console.log(this)
+
+    // let
+    let a = 'test'
+    let a = 'test2' // Uncaught SyntaxError: Identifier 'a' has already been declared
+    a = 'test3'     // 가능
+
+    // const
+    const b = 'test'
+    const b = 'test2' // Uncaught SyntaxError: Identifier 'a' has already been declared
+    b = 'test3'    // Uncaught TypeError:Assignment to constant variable.
+  </script>
+</body>
+</html>
