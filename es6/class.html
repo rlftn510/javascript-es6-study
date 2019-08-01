@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // "use strict"
+    
+
+    class Member{
+      set setName(name) {
+        this.name = name
+      }
+      getName() {
+        return this.name
+      }
+    }
+
+    let gilsu = new Member()
+    gilsu.setName = '이름';
+    console.log(gilsu.getName())
+
+
+    // es5 상속
+
+    // function Sports(member) {
+    //   this.member = member
+    // }
+    // Sports.prototype.setItem = function(item) {
+    //   this.item = item
+    // }
+    // function Soccer(member) {
+    //   Sports.call(this, member)
+    // }
+    // Soccer.prototype = Object.create(Sports.prototype, {
+    //   setGround : {
+    //     value : function(ground) {
+    //       this.ground = ground
+    //     }
+    //   }
+    // })
+    // Soccer.prototype.constructor = Soccer
+    // var obj = new Soccer(11)
+    // obj.setItem('축구')
+    // obj.setGround('상암')
+
+    // console.log(obj.member)
+    // console.log(obj.item)
+    // console.log(obj.ground)
+
+    class Sports {
+      constructor(member) {
+        this.member = member
+      }
+      setGround(ground) {
+        this.ground = ground
+      }
+      getMember() {
+        return this.member
+      }
+    }
+
+    class Soccer extends Sports {
+      setGround(ground) {
+        super.setGround
+        this.ground = ground
+      }
+      getGround() {
+        return this.ground
+      }
+    }
+
+    let obj = new Soccer('es6상속')
+    console.log(obj.getMember())
+    obj.setGround('될까')
+    console.log(obj.getGround())
+
+
+  </script>
+</body>
+</html>
