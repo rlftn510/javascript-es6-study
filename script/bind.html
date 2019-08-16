@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+  function Button(content) { 
+    this.content = content;
+  };
+ 
+  Button.prototype.click = function() {
+    console.log(this.content + ' clicked');
+  };
+  
+  var myButton = new Button('OK');
+  myButton.click(); // OK clicked
+  
+  var looseClick = myButton.click;
+  looseClick(); // undefined clicked
+  
+  var boundClick = myButton.click.bind(myButton);
+  boundClick(); // OK clicked
+
+
+  var sum = function(a, b) {
+    return a + b;
+  };
+
+  var add1 = sum(10, 5);
+  console.log(add1); 
+
+  var add2 = sum.bind(null, 5);
+  console.log(add2(10)); 
+
+  var add3 = sum.bind(null, 8);
+  console.log(add3(10)); 
+
+  </script>
+</body>
+</html>
