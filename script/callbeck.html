@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    
+    const getData = function(x, callbackfun){
+      setTimeout(callbackfun, 1000, x*x)
+    }
+    getData(2, function(x){
+      getData(x, function(x2){
+        getData(x2, function(x3){
+          console.log(x3)
+        })
+      })
+    })
+
+    // 클로져
+
+    const callbackFun = (callback) => {
+      callback()
+    }
+
+    const testFun = () => {
+      var msg = '클로져를 다시 알아 볼까?'
+      callbackFun(() => {
+        console.log(msg)
+      })
+      
+    }
+    testFun()
+
+
+function square(x, callback) {
+  setTimeout(callback, 100, x*x);
+}
+ 
+var firstCallback= function (number) {
+    square(number, secondCallback);
+}
+ 
+var secondCallback = function (number) {
+    square(number, thirdCallback);
+}
+var thirdCallback = function (number) {
+    console.log(number);
+}
+square(3, firstCallback);
+
+
+var callbackText = {
+    text: "No text",
+    // setText : (param) => {
+    //   this.text = param
+    // }
+    setText: function (param) {
+        this.text = param;
+    }
+}
+ 
+
+function callbackSample(name, callback) {
+    callback.call(callbackText, name)
+}
+ 
+callbackSample("This is callback sample", callbackText.setText);
+setTimeout(console.log(callbackText.text), 1000);
+setTimeout(console.log(window.text), 1000); 
+// arrow fun 일때 This is callback sample
+// arrow function은 자신만의 this를 생성하지 않는다. (Lexical this)
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+</html>
