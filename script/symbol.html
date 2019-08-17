@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 주로 객체 속성의 식별자(key)로 사용된다.
+    // Symbol은 비공개 객체 멤버를 만들기 위한 방법으로써 추가되었다.
+    const NAME = Symbol('name')
+    const obj = {
+      [NAME] : 'gilsu',
+      age : '29',
+      sex : 'male'
+    }
+    console.log(obj)
+    for (const key in obj) {
+      console.log(obj[key])
+    }
+
+    Object.keys(obj).forEach(element => {
+      console.log(element)
+    });
+    
+    const shareSymbol = Symbol.for('myKey');
+    //글로벌 심볼로 공유할때는 for 을 통해서 지정할 수 있으며
+    //keyfor 을 통하여 가져온다
+    const key1 = Symbol.keyFor(shareSymbol);
+    console.log(key1); // myKey
+
+    const unsharedSymbol = Symbol('myKey');
+    const key2 = Symbol.keyFor(unsharedSymbol);
+    //for 을 통해서 공유를 안했으니깐 keyfor 해도 없다.
+    console.log(key2); // undefined
+
+    
+
+  </script>
+</body>
+</html>
