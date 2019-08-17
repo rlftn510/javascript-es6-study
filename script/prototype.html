@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function Ultra(){}
+    Ultra.prototype.ultraProp = true;
+    
+    function Super(){}
+    Super.prototype = new Ultra();
+    
+    function Sub(){}
+    Sub.prototype = new Super();
+    
+    var o = new Sub();
+    console.log(o);
+
+    //class 대체
+    
+    function Person(name) {
+        this.name = name;
+    }
+    Person.prototype.name = null;
+    Person.prototype.introduce = function() {
+        return 'My name is ' + this.name;
+    }
+
+    function Programmer(name) {
+        this.name = name;
+    }
+    Programmer.prototype = new Person(); //상속
+    Programmer.prototype.coding = function() {
+        return "hello world";
+    }
+ 
+    var p1 = new Programmer('jessie');
+    var p2 = new Person('gilsu')
+    console.log(p1.introduce() + "<br/>"); //출력결과 : My name is jessie
+    console.log(p1.coding() + "<br/>"); //출력결과 : hello world      
+    console.log(p2.introduce())
+    console.log(p1)
+
+
+
+  </script>
+</body>
+</html>
