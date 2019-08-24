@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <a href="#a" id="el">click</a>
+  </div>
+  <script>
+    function* foo() {
+      let num = 0
+      while(num < 5) {
+        console.log(d('d'))
+        yield num++
+      }
+    }
+    const t = foo()
+    
+    const el = document.getElementById('el')
+    el.onclick = () => {
+      console.log(t.next().value)
+    }
+
+    let result = []
+    const d = (arg) => {
+      result.push(arg)
+      return result
+    }
+    
+  </script>
+</body>
+</html>
