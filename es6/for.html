@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    const arr = [1,2,3,4,5]
+    const obj = {'a':1, 'b':2, 'c':3}
+    // const iter = {};
+    obj[Symbol.iterator] = function* () {
+      yield '1';
+      yield '2';
+      yield '3';
+      yield 's';
+    }
+    for (const iterator of obj) {
+      console.log(iterator)
+    }
+    for (const key in obj) {
+        console.log(obj[key])
+    }
+    const arr2 = [1,1,1,2,3,4,4,5]
+    const setArr = new Set(arr2)
+    for (const iterator of setArr) {
+      console.log(iterator)
+    }
+    
+    for (const value of Object.values(obj)) {
+      console.log(value)
+    }
+    for (const key of Object.keys(obj)) {
+      console.log(key)
+    }
+
+//만약 Object.values 없다면 ? 
+  if(typeof Object.values === 'undefined') {
+  Object.values = function(obj) {
+    var array = new Array();
+    for (var key in obj) {
+      array.push(obj[key]);
+    }
+    return array
+  }
+}
+const ttt = Object.keys(obj)
+console.log(ttt)
+
+  </script>
+</body>
+</html>
