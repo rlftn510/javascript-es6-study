@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const getPrivate = () => {
+      const token = 'ASADASD'
+      let API = {}
+      console.log(API)
+      function check (reqToken){
+        return token === reqToken
+      }
+      
+      API.register = (id, pass) => {
+        console.log(`register id : ${id} password : ${pass}`)
+      }
+      API.login = (id,pass) => {
+        console.log('login')
+      }
+      console.log(API)
+
+      API = {
+        ...API,
+        update : function(id, pass){
+          console.log('업뎃')
+        },
+        delete : function(id) {
+          console.log('삭제')
+        },
+        check : check
+      }
+      // assign 이용 객체 병합
+      // API = Object.assign({}, API, {check : check})
+      console.log(API)
+      return API
+    }
+
+    const callApi = getPrivate()
+    callApi.register('gilsu', '123')
+    callApi.update()
+    
+    
+  </script>
+</body>
+</html>
