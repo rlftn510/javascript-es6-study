@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // const gugu = function(num) {
+    //   const maxgu = 10
+    //   for (let index = 1; index < maxgu; index++) {
+    //     console.log(`${num} X ${index} = ${num*index}`)
+    //   }
+    // }
+    // gugu(9)
+    // gugu(7)
+    let firBol = true
+    while(firBol){
+      let num1 = Math.floor(Math.random() * 9) + 1
+      let num2 = Math.floor(Math.random() * 9) + 1
+      let result = num1*num2
+      let secBol = true
+      let pro = prompt(num1 + "곱하기" + num2)
+      while(secBol) {
+        if (Number(pro) === 0) {
+          console.log('종료')
+          secBol = false
+          firBol = false
+        }
+        if (Number(pro) === result) {
+          console.log('정답')
+          secBol = false
+        } else {
+          console.log('오답')
+        }
+        
+      }
+    }
+    
+      
+    
+  </script>
+</body>
+</html>
