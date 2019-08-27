@@ -35,6 +35,19 @@
     }
     testFun()
 
+    const closer = (msg) => {
+      const memo = `이것은 ${msg} 입니다.` 
+      
+      function inner(){
+        console.log(memo)
+      }
+      function inner2() {
+        console.log(memo + '2')
+      }
+      return inner(), inner2()
+    }
+    closer('memo')
+
 
 function square(x, callback) {
   setTimeout(callback, 100, x*x);
