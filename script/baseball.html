@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const doc = document
+    const body = doc.body
+    const result = doc.createElement('h1')
+    result.textContent = '야구게임'
+    body.append(result)
+    const form = doc.createElement('form')
+    body.append(form)
+    const input = doc.createElement('input')
+    input.type = 'text'
+    input.maxLength = 4
+    form.append(input)
+    const button = doc.createElement('button')
+    button.textContent = '버튼'
+    form.append(button)
+
+
+    let startArr = [1,2,3,4,5,6,7,8,9]
+    let ranArr = []
+    for (let index = 0; index < 4; index++) {
+      let ranNum = startArr.splice(Math.floor(Math.random() * (9 - index)), 1)[0]
+      ranArr.push(ranNum)
+      
+    }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault()
+      const answer = input.value
+      console.log(answer,ranArr.join(''))
+      if (answer === ranArr.join('')) {
+        result.textContent = '정답'
+        console.log('정답')
+        input.value = "";
+        input.focus()
+        startArr = [1,2,3,4,5,6,7,8,9]
+        ranArr = []
+        for (let index = 0; index < 4; index++) {
+          ranNum = startArr.splice(Math.floor(Math.random() * (9 - index)), 1)[0]
+          ranArr.push(ranNum)
+        }
+        console.log(ranArr)
+      } else {
+        let answerArr = answer.split('')
+        let strike = 0
+        let ball = 0
+        answerArr.forEach((el, idx) => {
+          if(answerArr[idx] === String(ranArr[idx])){
+            strike++
+          } else if (answerArr.indexOf(String(ranArr[idx])) > -1) {
+            ball++
+          } else {
+            console.log('아웃')
+          }
+        })
+        console.log(`스트 : ${strike}, 볼 : ${ball}`)
+      }
+    })
+    
+    console.log(ranArr)
+  </script>
+</body>
+</html>
