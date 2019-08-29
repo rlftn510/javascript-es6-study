@@ -8,6 +8,8 @@
 </head>
 <body>
   <script>
+
+    // dom 생성
     const doc = document
     const body = doc.body
     const result = doc.createElement('h1')
@@ -23,43 +25,50 @@
     button.textContent = '버튼'
     form.append(button)
 
-
-    let startArr = [1,2,3,4,5,6,7,8,9]
-    let ranArr = []
-    for (let index = 0; index < 4; index++) {
-      let ranNum = startArr.splice(Math.floor(Math.random() * (9 - index)), 1)[0]
-      ranArr.push(ranNum)
-      
+    let startArr, ranArr
+    let count = 0
+    
+    const newGame = function() {
+      startArr = [1,2,3,4,5,6,7,8,9]
+      ranArr = []
+      for (let index = 0; index < 4; index++) {
+        let ranNum = startArr.splice(Math.floor(Math.random() * (9 - index)), 1)[0]
+        ranArr.push(ranNum)
+      }
     }
+    newGame()
+    
 
     form.addEventListener('submit', function(e){
       e.preventDefault()
       const answer = input.value
       console.log(answer,ranArr.join(''))
       if (answer === ranArr.join('')) {
-        result.textContent = '정답'
         console.log('정답')
         input.value = "";
         input.focus()
-        startArr = [1,2,3,4,5,6,7,8,9]
-        ranArr = []
-        for (let index = 0; index < 4; index++) {
-          ranNum = startArr.splice(Math.floor(Math.random() * (9 - index)), 1)[0]
-          ranArr.push(ranNum)
-        }
+        newGame()
+        count = 0
         console.log(ranArr)
       } else {
         let answerArr = answer.split('')
         let strike = 0
         let ball = 0
+        count++
+        if(count > 10){
+          console.log('10번 넘게 틀렸습니다.')
+          newGame()
+          count = 0
+        }
         answerArr.forEach((el, idx) => {
           if(answerArr[idx] === String(ranArr[idx])){
             strike++
           } else if (answerArr.indexOf(String(ranArr[idx])) > -1) {
             ball++
-          } else {
-            console.log('아웃')
           }
+          //  else {
+          //   console.log('아웃')
+          // }
         })
         console.log(`스트 : ${strike}, 볼 : ${ball}`)
       }
