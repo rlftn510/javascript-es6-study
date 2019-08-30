@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>lotto</title>
+</head>
+<body>
+  <div>
+    <div id="result"></div>
+    <div id="bonus"></div>
+  </div>
+  <script>
+    let numArr = Array(45).fill().map((el, idx) => {
+      return idx+1
+    })
+    
+    let ranNum = []
+    while (numArr.length > 0) {
+      let numSplice = numArr.splice(Math.floor(Math.random() * numArr.length), 1)[0]
+      ranNum.push(numSplice)
+    }
+    const bonus = ranNum[ranNum.length - 1]
+    const result = ranNum.slice(0, 6).sort((a, b) => a - b)
+    console.log(`당첨번호 : ${result}, 보너스 : ${bonus}`)
+
+    
+  </script>
+</body>
+</html>
