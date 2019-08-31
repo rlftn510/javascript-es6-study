@@ -5,11 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>lotto</title>
+  <style>
+    .ball{display: inline-block;width: 40px;height: 40px;border-radius: 100%;vertical-align: middle;border: 1px solid #000;text-align: center;line-height: 40px;margin: 0 20px;}
+  </style>
 </head>
 <body>
   <div>
-    <div id="result"></div>
-    <div id="bonus"></div>
+    <div id="result">
+      당첨
+    </div>
+    <div id="bonus" class="ball">
+      
+    </div>
   </div>
   <script>
     let numArr = Array(45).fill().map((el, idx) => {
@@ -21,9 +28,34 @@
       let numSplice = numArr.splice(Math.floor(Math.random() * numArr.length), 1)[0]
       ranNum.push(numSplice)
     }
-    const bonus = ranNum[ranNum.length - 1]
-    const result = ranNum.slice(0, 6).sort((a, b) => a - b)
-    console.log(`당첨번호 : ${result}, 보너스 : ${bonus}`)
+    const bonusNum = ranNum[ranNum.length - 1]
+    const resultNum = ranNum.slice(0, 6).sort((a, b) => a - b)
+    console.log(`당첨번호 : ${resultNum}, 보너스 : ${bonusNum}`)
+    const result = document.getElementById('result')
+    const bonus = document.getElementById('bonus')
+    for (var i = 0; i < resultNum.length; i++) {
+      (function (j) {
+        setTimeout(function(){
+          let creDiv = document.createElement('div')
+          creDiv.textContent = resultNum[j]
+          creDiv.className = 'ball'
+          if ( resultNum[j] <= 10 ) {
+            creDiv.style.backgroundColor = "red"
+          } else if (resultNum[j] <= 20) {
+            creDiv.style.backgroundColor = "orange"
+          } else if (resultNum[j] <= 30) {
+            creDiv.style.backgroundColor = "yellow"
+          } else if (resultNum[j] <= 40) {
+            creDiv.style.backgroundColor = "blue"
+          } else {
+            creDiv.style.backgroundColor = "green"
+          }
+          result.append(creDiv)
+        }, j * 1000)
+      })(i)
+    }
+
+    bonus.append(bonusNum)
 
     
   </script>
