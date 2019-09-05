@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>가위바위보</title>
+  <style>
+    #computer {background-image: url('https://en.pimg.jp/023/182/267/1/23182267.jpg'); background-position: 0 0;width: 150px;height: 200px}
+  </style>
+</head>
+<body>
+  <div id="computer">
+    <!-- <img src="https://en.pimg.jp/023/182/267/1/23182267.jpg" alt=""> -->
+  </div>
+  <div>
+    <button id="scissor" class="btn">가위</button>
+    <button id="rock" class="btn">바위</button>
+    <button id="paper" class="btn">보</button>
+  </div>
+  <script>
+    const com = document.querySelector('#computer')
+    let left = 0
+    let dic = {
+      바위 : '0',
+      가위 : '-142px',
+      보 : '-284px'
+    }
+
+    function comSelect (left) {
+      let result =  Object.entries(dic).find((v) => {
+        //find ture 값을 만나면 멈춤
+        return v[1] === left
+      })
+      return result[0]
+    }
+
+    let score = {
+      '가위' : 0,
+      '바위' : 1,
+      '보' : -1
+    }
+
+    let setGame = function(){
+      if (left === dic.바위) {
+        left = dic.가위
+      } else if (left === dic.가위) {
+        left = dic.보
+      } else {
+        left = dic.바위
+      }
+      com.style.backgroundPositionX = left 
+    }
+    let startGame = setInterval(setGame, 100)
+    
+
+    let btnArr = document.querySelectorAll('.btn')
+    btnArr.forEach((v) => {
+      
+      v.addEventListener('click', (e)=>{
+        clearInterval(startGame)
+        setTimeout(function(){
+          startGame = setInterval(setGame, 100)
+        }, 1000)
+        let mySelect = e.target.textContent
+        let myScore = score[mySelect]
+        let comScore = score[comSelect(left)]
+        console.log(mySelect, comSelect(left))
+        console.log(myScore, comScore)
+        
+        if(myScore - comScore === 0){
+          console.log('비겼다')
+        } else if([-1, 2].includes(myScore - comScore)) {
+          //includes 또는 역할을 하여 ture 값을 판단
+          console.log('졌다ㅠㅠ')
+        } else {
+          console.log('이겼다!!')
+        }
+        
+      })
+    })
+//       가위 0  바위 1  보 -1
+// 이김       
+// 짐         
+// 비김
+  </script>
+</body>
+</html>
